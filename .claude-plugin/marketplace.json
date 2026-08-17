@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "dumbify",
+  "owner": {
+    "name": "smartwatermelon",
+    "url": "https://github.com/smartwatermelon"
+  },
+  "description": "The dumbify skill, installable as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "dumbify",
+      "source": "./",
+      "description": "Rewrite competent workplace writing into terse, lowercase, fragment-heavy engineering communication, preserving meaning and technical precision while removing ceremony.",
+      "license": "MIT",
+      "keywords": [
+        "writing",
+        "editing",
+        "prose",
+        "style",
+        "compression",
+        "skill"
+      ]
+    }
+  ]
+}
