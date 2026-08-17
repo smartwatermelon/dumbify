@@ -19,6 +19,6 @@ jobs:
       issues: read
       pull-requests: read
       id-token: write # required by claude-code-action for internal authentication
-    uses: smartwatermelon/github-workflows/.github/workflows/claude-assistant.yml@v3.1.0
+    uses: smartwatermelon/github-workflows/.github/workflows/claude-assistant.yml@v3
     secrets:
       claude_oauth_token: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
