@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "dumbify",
+  "description": "Rewrite competent workplace writing into terse, lowercase, fragment-heavy engineering communication, preserving meaning and technical precision while removing ceremony.",
+  "version": "0.1.0",
+  "author": {
+    "name": "smartwatermelon",
+    "url": "https://github.com/smartwatermelon"
+  },
+  "homepage": "https://github.com/smartwatermelon/dumbify",
+  "repository": "https://github.com/smartwatermelon/dumbify",
+  "license": "MIT",
+  "keywords": ["writing", "editing", "prose", "style", "compression", "skill"],
+  "skills": ["./"]
+}
