@@ -1,0 +1,15 @@
+name: Dependabot Auto-Merge
+
+on: # zizmor: ignore[dangerous-triggers] required to run from base branch; no PR code executed here
+  pull_request_target:
+    types: [opened, synchronize, reopened]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  dependabot-auto-merge:
+    uses: smartwatermelon/github-workflows/.github/workflows/dependabot-auto-merge.yml@dependabot-auto-merge-v2
+    with:
+      trusted_namespaces: 'smartwatermelon'

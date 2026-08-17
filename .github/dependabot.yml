@@ -1,0 +1,16 @@
+# Dependabot: auto-PR bumps for GitHub Actions pins in .github/workflows/.
+# Primary target: the smartwatermelon/github-workflows reusable workflow
+# (see https://github.com/smartwatermelon/github-workflows/releases).
+# Secondary: any other actions/* or third-party actions used here.
+version: 2
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # cooldown is a valid dependabot.yml key (GitHub docs:
+    # https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#cooldown)
+    cooldown:
+      default-days: 7
+    commit-message:
+      prefix: "chore"
