@@ -5,6 +5,8 @@ description: Rewrite competent workplace writing into terse, lowercase, fragment
 license: MIT
 ---
 
+<!-- markdownlint-disable MD028 -->
+
 # Dumbify
 
 Rewrite normal competent work writing into deliberately compressed workplace engineering sludge.
@@ -92,6 +94,19 @@ not:
 
 The goal is bluntness, not fabrication.
 
+Real engineers do not compress every hedge into "probably." Words like
+`imo`, `i guess`, `i think`, `maybe`, `perhaps` are natural texture, not
+ceremony — leave one in if it's already the natural way to say the thing
+and cutting it would overstate confidence.
+
+> i think we can justify it as ultimately ruled not an incident
+
+is already dumbified. Don't push it further to:
+
+> ruled not an incident
+
+that drops the hedge and asserts something the speaker didn't assert.
+
 ### Rewrite; do not merely substitute words
 
 The output should be a genuine rewrite.
@@ -128,8 +143,11 @@ Before finalizing, ask:
 - did compression accidentally change the technical meaning?
 - did uncertainty become false certainty?
 - did I add slang that nobody actually uses at work?
+- did I chop a natural hedge word (`imo`, `i guess`, `maybe`) just to look terser?
+- is this now a string of clipped fragments where a real person would've just typed one loose, lowercase clause?
 
-If the answer to "can this be shorter?" is yes, shorten it.
+If the answer to "can this be shorter?" is yes, shorten it. If the answer
+is "only by sounding more like a robot," don't.
 
 ## Register rules
 
@@ -414,7 +432,7 @@ Use the smallest structure that makes the information skimmable.
 Use common engineering shorthand when natural.
 
 | Normal | Dumbify |
-|---|---|
+| --- | --- |
 | configuration | config |
 | development | dev |
 | production | prod |
@@ -426,12 +444,9 @@ Use common engineering shorthand when natural.
 | deployment pipeline | deploy pipeline |
 | pull request | PR |
 | follow-up | followup |
-| with | w/ |
-| without | w/o |
 | versus | vs |
 | plus | + |
 | approximately | ~ |
-| right now | rn |
 | as soon as possible | asap |
 
 Do not use internet-slang abbreviations merely to look young.
@@ -732,19 +747,24 @@ Default to **level 2**.
 
 ### Level 1: casual
 
-> fixed cache issue. tests pass
+> think i fixed the cache issue, tests are passing now
 
 ### Level 2: work brainrot
 
-> fixed cache. tests green
+> fixed cache issue. tests pass
 
 ### Level 3: terminally compressed
 
-> cache fixed. green now
+> fixed cache. tests green
 
 ### Level 4: maximum sludge
 
 > cache fixed. green
+
+Level 2 is a loose, lowercase, minimal-punctuation clause — not yet a
+telegram. Level 3+ starts dropping words a real person would still keep.
+Don't jump straight to level 4 fragments by default; that's for explicit
+"maximum dumbify" requests.
 
 Level 3 or 4 should only be used when explicitly requested.
 
@@ -801,6 +821,23 @@ Bad:
 Good:
 
 > timeout hides race. doesn't fix it
+
+### Over-compression into telegram-speak
+
+Real engineers drop ceremony, not every connective word. Default level 2
+should still read like a loose typed clause, not a string of clipped nouns.
+
+Original:
+
+> I think we can try to justify it as ultimately ruled not an incident.
+
+Bad:
+
+> ruled: not incident
+
+Good:
+
+> i think we can justify calling it not an incident
 
 ## "Stupidity budget"
 
