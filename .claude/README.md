@@ -4,21 +4,17 @@ This directory was automatically created by Git template when you initialized or
 
 ## What is this?
 
-The `.claude/` directory provides project-specific configuration and extensions for Claude Code CLI (CCCLI) collaboration. It integrates with global infrastructure at `~/.claude/` to provide:
+The `.claude/` directory provides project-specific configuration for Claude Code CLI (CCCLI) collaboration. It integrates with global infrastructure at `~/.claude/` to provide:
 
 - Project-specific configuration (Node version, required tools, deployment secrets)
-- Custom git hook extensions for project-specific validation
 - Project-local documentation and patterns
 
 ## Directory Structure
 
-```
+```text
 .claude/
 ├── README.md                  # This file
-├── config.sh.template         # Template for project configuration
-└── hooks/
-    └── extensions/            # Project-specific git hook extensions
-        └── example.sh.disabled  # Example extension (disabled by default)
+└── config.sh.template         # Template for project configuration
 ```
 
 ## Quick Start
@@ -64,34 +60,21 @@ If you need project-specific settings:
 
 ### Option 3: Add Custom Hook Extensions
 
-If you need project-specific validation:
+Project-specific git hook extensions do **not** live in `.claude/`. They live in
+`.project-hooks/` at the repository root:
 
-1. Create a new file in `.claude/hooks/extensions/`:
+- `.project-hooks/pre-commit` — runs after the global lint pass, before the AI review
+- `.project-hooks/pre-push` — same seam for push-time checks
 
-   ```bash
-   touch .claude/hooks/extensions/my-validation.sh
-   chmod +x .claude/hooks/extensions/my-validation.sh
-   ```
+Both must be executable (`chmod +x`). The trust model is the same as any build
+tooling: if you cloned the repo and are committing to it, you trust its scripts.
 
-2. Write your validation logic:
+```bash
+touch .project-hooks/pre-commit
+chmod +x .project-hooks/pre-commit
+```
 
-   ```bash
-   #!/usr/bin/env bash
-   # Extension contract:
-   #   - Exit 0: Check passed (allow git operation)
-   #   - Exit 1: Check failed (block git operation)
-   #   - Can use functions from ~/.claude/hooks/lib/hook-common.sh
-
-   # Your validation logic here
-   if [[ condition_fails ]]; then
-     echo "ERROR: Validation failed"
-     exit 1
-   fi
-
-   exit 0
-   ```
-
-3. Extensions run automatically on relevant git operations (commit, push, etc.)
+The contract is exit 0 to allow the git operation, exit 1 to block it.
 
 ## Common Patterns
 
@@ -116,7 +99,7 @@ export DEPLOYMENT_REQUIRED_SECRETS=(
 ### Custom Security Check
 
 ```bash
-# .claude/hooks/extensions/security.sh
+# .project-hooks/pre-commit
 #!/usr/bin/env bash
 
 # Block commits with hardcoded API keys
@@ -130,7 +113,9 @@ exit 0
 
 ## Integration with Global Infrastructure
 
-Global hooks at `~/.config/git/hooks/` automatically discover and run extensions in this directory. No configuration needed - just add your `.sh` files and make them executable.
+Global hooks at `~/.config/git/hooks/` run the project-local extensions in
+`.project-hooks/`. Nothing executes files inside `.claude/` — that directory is
+configuration and documentation only.
 
 **Global Infrastructure Documentation**: `~/.claude/docs/INFRASTRUCTURE.md`
 
@@ -139,16 +124,6 @@ Global hooks at `~/.config/git/hooks/` automatically discover and run extensions
 ### config.sh.template
 
 Template for project configuration. Copy to `config.sh` and customize with your project's requirements.
-
-### hooks/extensions/example.sh.disabled
-
-Example extension showing the basic structure. Disabled by default (`.disabled` suffix prevents execution).
-
-To enable:
-
-1. Remove `.disabled` suffix: `mv example.sh.disabled my-check.sh`
-2. Customize validation logic
-3. Ensure executable: `chmod +x .claude/hooks/extensions/my-check.sh`
 
 ## Next Steps
 
@@ -168,11 +143,11 @@ To enable:
 ### Extensions not running?
 
 ```bash
-# Check extensions are executable
-ls -la .claude/hooks/extensions/
+# Check the extension exists at the right path and is executable
+ls -la .project-hooks/
 
 # Make executable if needed
-chmod +x .claude/hooks/extensions/*.sh
+chmod +x .project-hooks/pre-commit .project-hooks/pre-push
 ```
 
 ### Config not being used?
