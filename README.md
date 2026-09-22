@@ -96,7 +96,7 @@ pr-review    →    personify    →    dumbify
 - [pr-review](https://github.com/smartwatermelon/pr-review) does the review
   itself: traces claims against the repo, triages findings down to the one
   that matters, and stages a pending GitHub review rather than posting it.
-- [personify](https://github.com/smartwatermelon/personify) strips AI-writing
+- [personify](https://github.com/twistedmelonman/personify) strips AI-writing
   tells from the draft and, given a `VOICE.md`, makes it sound like a specific
   person instead of a generically clean one.
 - Dumbify compresses the register the rest of the way.
