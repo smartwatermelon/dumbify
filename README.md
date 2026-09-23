@@ -1,5 +1,30 @@
 # Dumbify
 
+> [!WARNING]
+> **Deprecated as of 2026-09-23.** This repository is archived and read-only.
+>
+> Dumbify was a second filter, run after personify, that compressed text into a
+> terse engineering register. Personify 2.0 made it redundant: personify now
+> produces send-ready text for the target surface directly. Dumbify also
+> rewrites the text after personify's Pangram check, so the check no longer
+> describes the text that gets posted.
+>
+> Use [personify](https://github.com/twistedmelonman/personify) instead:
+>
+> ```text
+> /plugin marketplace add twistedmelonman/personify
+> ```
+>
+> To uninstall dumbify from Claude Code:
+>
+> ```bash
+> claude plugin uninstall dumbify@dumbify
+> claude plugin marketplace remove dumbify
+> ```
+>
+> If you uploaded a copy of `SKILL.md` as a claude.ai skill, remove it in your
+> claude.ai settings. The commands above do not touch it.
+
 An agent skill that rewrites competent workplace writing into terse, lowercase, fragment-heavy engineering communication.
 
 Dumbify is designed for GitHub PR descriptions and review comments, Asana tasks, Slack / Teams, incident notes, and similar internal work communication.

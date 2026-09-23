@@ -1,6 +1,6 @@
 ---
 name: dumbify
-version: 0.1.0
+version: 0.1.1
 description: Rewrite competent workplace writing into terse, lowercase, fragment-heavy engineering communication. Preserve meaning, facts, technical precision, and real uncertainty while aggressively removing ceremony, hedging, articles, connective tissue, and unnecessary words. Optimized for GitHub PRs/comments, Asana tasks, Slack, and similar internal work communication.
 license: MIT
 ---
